@@ -2,6 +2,11 @@
 
 A production-ready Django project skeleton with environment-specific settings, Docker configuration, and modern tooling.
 
+## Status
+
+✅ **Working**: The skeleton is fully functional with Docker Compose development environment.  
+🚀 **Ready to use**: Run `docker compose -f docker/development/docker-compose.yml up` to start development.
+
 ## Features
 
 - **Environment-specific settings**: Development, staging, production, and test configurations
@@ -40,8 +45,11 @@ cp .env.example .env
 ### 3. Database Setup
 
 ```bash
-# Local development with Docker
-docker compose -f docker/local/docker-compose.yml up --build
+# Development with Docker (Recommended)
+docker compose -f docker/development/docker-compose.yml up
+
+# Or run with rebuild if needed
+docker compose -f docker/development/docker-compose.yml up --build
 
 # Or run locally with PostgreSQL (requires PostgreSQL installed locally)
 # Make sure PostgreSQL is running and create the database first
@@ -72,7 +80,7 @@ django-skeleton/
 │   ├── templates/                # Global templates
 │   └── manage.py
 ├── docker/                       # Docker configurations
-│   ├── local/                    # Local development
+│   ├── development/              # Development environment
 │   └── production/               # Production deployment
 ├── requirements/                 # pip requirements files
 │   ├── base.txt                  # Base requirements
@@ -90,7 +98,7 @@ django-skeleton/
 
 ```bash
 # Run with Docker
-docker compose -f docker/local/docker-compose.yml up --build
+docker compose -f docker/development/docker-compose.yml up --build
 
 # Run locally
 cd src
