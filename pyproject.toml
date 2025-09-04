@@ -1,0 +1,56 @@
+[project]
+name = "django-project"
+version = "0.1.0"
+description = "Django project skeleton"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "Django>=5.1.6",
+    "psycopg2-binary",
+    "python-dotenv",
+    "django-extensions",
+    "django-debug-toolbar",
+    "gunicorn",
+    "whitenoise",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest-django",
+    "pytest-cov",
+    "black",
+    "isort",
+    "flake8",
+    "mypy",
+    "django-stubs",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  migrations
+)/
+'''
+
+[tool.isort]
+profile = "black"
+skip = ["migrations"]
+
+[tool.mypy]
+python_version = "3.11"
+plugins = ["mypy_django_plugin.main"]
+ignore_missing_imports = true
+
+[tool.django-stubs]
+django_settings_module = "project_name.settings.development"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "project_name.settings.test"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
